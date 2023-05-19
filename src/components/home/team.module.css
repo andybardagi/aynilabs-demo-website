@@ -1,0 +1,10 @@
+.team {
+  --bgColor: theme("colors.sky.950");
+  --gridColor: theme("colors.sky.900");
+  background-image: linear-gradient(var(--gridColor) 2px, transparent 2px),
+    linear-gradient(90deg, var(--gridColor) 2px, transparent 2px),
+    linear-gradient(var(--gridColor) 1px, transparent 1px),
+    linear-gradient(90deg, var(--gridColor) 1px, var(--bgColor) 1px);
+  background-size: 250px 250px, 250px 250px, 50px 50px, 50px 50px;
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+}
