@@ -2,6 +2,10 @@ import React from "react";
 import { Logo } from "../ayni-brand/Logo";
 import Link from "next/link";
 import { NavLink, NavLinkProps } from "./navbar/NavLink";
+import { BiMenu } from "react-icons/bi";
+import { useOpenClose } from "@/hooks/useOpenClose";
+import { useClickOutside } from "@/hooks/useClickOutside";
+import { useWindowResize } from "@/hooks/useWindowResize";
 
 const NavLinks: NavLinkProps[] = [
   {
@@ -19,6 +23,10 @@ const NavLinks: NavLinkProps[] = [
 ];
 
 export default function Header() {
+  const [showMenu, { open, close, toggle }] = useOpenClose(false);
+  useClickOutside("menu-dropdown", close);
+  useWindowResize(close);
+
   return (
     <div className="w-full bg-white py-4">
       <div className="w-full max-w-7xl mx-auto flex flex-row justify-between items-center px-4 xl:px-0">
@@ -29,7 +37,7 @@ export default function Header() {
             <span className="font-light">Labs</span>
           </h4>
         </Link>
-        <nav>
+        <nav className="hidden md:block">
           <ul className="flex flex-row gap-4 items-center justify-center">
             {NavLinks.map((link) => (
               <li key={link.href}>
@@ -38,6 +46,26 @@ export default function Header() {
             ))}
           </ul>
         </nav>
+        <div className="relative md:hidden" onClick={toggle}>
+          <BiMenu className="text-3xl" />
+          <div
+            className={`${
+              showMenu ? "block" : "hidden"
+            } absolute right-0 mt-2  bg-white rounded-md shadow-lg py-0 z-30 border border-blue-300 menu-dropdown`}
+          >
+            <div className="flex flex-col items-center justify-center w-56">
+              {NavLinks.map((link) => (
+                <Link
+                  href={link.href}
+                  key={link.href}
+                  className="py-2 w-full px-4 max-w-full border-b border-blue-300 hover:bg-blue-100 font-semibold"
+                >
+                  {link.text}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

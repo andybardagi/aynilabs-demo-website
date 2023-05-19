@@ -9,10 +9,10 @@ export default function Hero() {
     >
       <div className="w-full max-w-7xl flex lg:flex-row flex-col items-center gap-8 justify-between px-4 xl:px-0">
         <div className="order-2 lg:order-1">
-          <h1 className="text-white text-6xl font-bold">
+          <h1 className="text-white text-4xl md:text-6xl font-bold">
             Collaboration is key
           </h1>
-          <h2 className="text-white text-5xl font-semibold mt-2">
+          <h2 className="text-white text-3xl md:text-5xl font-semibold mt-2">
             Innovation is our game
           </h2>
         </div>
